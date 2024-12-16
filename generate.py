@@ -1,9 +1,11 @@
 import os
 import traceback
+import pybliometrics.scopus
 from pybliometrics.scopus import ScopusSearch, AbstractRetrieval
 import json
 from tqdm import tqdm
 
+pybliometrics.scopus.init()
 # NOTE: config file for pybliometrics is stored in $HOME/.config/pybliometrics.cfg
 
 if __name__ == "__main__":
@@ -16,7 +18,8 @@ if __name__ == "__main__":
 
         # get the results
         x = ScopusSearch(
-            f'ABS ( "data mining" ) OR ABS ( "machine learning" ) OR TITLE ( "data mining" ) OR TITLE ( "machine learning" ) AND TITLE ( "material" ) OR ABS ( "material" ) OR SRCTITLE ( "material" ) AND SUBJAREA ( mate ) AND DOCTYPE ( "AR" ) AND SRCTYPE( j ) AND PUBYEAR = {year} AND NOT SUBJAREA (medi ) AND NOT SUBJAREA ( immu ) AND NOT SUBJAREA ( BIOC ) AND NOT SUBJAREA ( busi )',
+            # f'ABS ( "data mining" ) OR ABS ( "machine learning" ) OR TITLE ( "data mining" ) OR TITLE ( "machine learning" ) AND TITLE ( "material" ) OR ABS ( "material" ) OR SRCTITLE ( "material" ) AND SUBJAREA ( mate ) AND DOCTYPE ( "AR" ) AND SRCTYPE( j ) AND PUBYEAR = {year} AND NOT SUBJAREA (medi ) AND NOT SUBJAREA ( immu ) AND NOT SUBJAREA ( BIOC ) AND NOT SUBJAREA ( busi )',
+            f'TITLE ( "Madrid" )',
             view="STANDARD")
         print(f"Year: {year} , Results count: {len(x.results)}")
 
